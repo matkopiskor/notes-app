@@ -2,9 +2,15 @@
     width: 100%;
     max-width: 1240px;
     margin: 90px auto;
-    display: grid;
-    grid-template-columns: repeat(5, 200px);
+    display: flex;
+    flex-wrap: wrap;
     row-gap: 60px;
     column-gap: 60px;
     position: relative;
+}
+
+@media (max-width: 1240px) {
+    .notes {
+        margin: 90px 80px;
+    }
 }

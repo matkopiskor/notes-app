@@ -1,6 +1,6 @@
 import { FC, useCallback } from 'react';
 import { defaultNoteContent } from '../../utils/constants/defaultNoteContent';
-import { useNotes } from '../../utils/notesModule/useNotes';
+import { useNotes } from '../../utils/notesModule';
 import { NewNote } from '../NewNote/NewNote';
 import { Note } from '../Note/Note';
 import { NoteDetails } from '../NoteDetails/NoteDetails';
@@ -40,7 +40,7 @@ export const Notes: FC = () => {
             <div className={styles.notes}>
                 <NewNote onClick={openNewNote} />
                 {getAllIds().map((id) => (
-                    <Note note={get(id)} onClick={openExistingNote} />
+                    <Note key={id} note={get(id)} onClick={openExistingNote} />
                 ))}
             </div>
             {isOpen && (

@@ -5,7 +5,7 @@ import Delete from '../../assets/svg/delete.svg';
 import Save from '../../assets/svg/save.svg';
 import Edit from '../../assets/svg/edit.svg';
 import ReactMarkdown from 'react-markdown';
-import { INote } from '../../utils/notesModule/Note';
+import { INote } from '../../utils/notesModule/model';
 
 interface INoteDetailsProps {
     note: INote;
@@ -27,7 +27,9 @@ export const NoteDetails: FC<INoteDetailsProps> = (props) => {
     } = props;
     const [value, setValue] = useState(source);
 
-    const onSaveClick = useCallback(() => saveNote(id, value), [id, saveNote, value]);
+    const onSaveClick = useCallback(() => {
+        saveNote(id, value);
+    }, [id, saveNote, value]);
     const onDeleteClick = useCallback(() => deleteNote(id), [deleteNote, id]);
 
     return (
@@ -76,7 +78,7 @@ interface IEditModeProps {
 const EditMode: FC<IEditModeProps> = ({ value, setValue }) => {
     const onChange = useCallback(
         (e) => {
-            setValue(e.targetValue);
+            setValue(e.target.value);
         },
         [setValue]
     );

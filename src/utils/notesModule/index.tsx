@@ -1,6 +1,30 @@
-import { useCallback, useContext } from 'react';
-import { INote } from './Note';
-import { NotesContext } from './NotesContext';
+import { createContext, FC, useCallback, useContext, useEffect, useState } from 'react';
+import { INote } from './model';
+
+interface INotesContext {
+    notes: INote[];
+    setNotes: (notes: INote[]) => void;
+};
+
+const NotesContext = createContext({} as INotesContext);
+
+const NOTES_KEY = 'notes';
+
+const initialState = JSON.parse(localStorage.getItem(NOTES_KEY) as string) ?? [];
+
+export const NotesProvider: FC = ({ children }) => {
+    const [notes, setNotes] = useState<INote[]>(initialState);
+
+    useEffect(() => {
+        localStorage.setItem(NOTES_KEY, JSON.stringify(notes));
+    }, [notes]);
+
+    return (
+        <NotesContext.Provider value={{notes, setNotes}}>
+            {children}
+        </NotesContext.Provider>
+    );
+};
 
 export const useNotes = () => {
     const { notes, setNotes } = useContext(NotesContext);
@@ -17,7 +41,7 @@ export const useNotes = () => {
 
     const add = useCallback(
         (source: string) => {
-            const id = notes.length;
+            const id = (notes[notes.length - 1]?.id ?? -1) + 1;
             setNotes([...notes, { id, source }]);
             return id;
         },
