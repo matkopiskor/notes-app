@@ -1,0 +1,12 @@
+.newNote {
+    width: 200px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent-color);
+    color: var(--secondary-color);
+    border-radius: 10px;
+    font-size: 64px;
+    cursor: pointer;
+}
