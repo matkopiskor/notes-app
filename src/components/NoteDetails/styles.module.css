@@ -1,0 +1,57 @@
+.noteDetailsWrapper {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.2);
+    display: grid;
+    place-items: center;
+}
+
+.noteDetails {
+    width: 800px;
+    height: 900px;
+    background: var(--secondary-color);
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+.actionsRow {
+    width: 100%;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.action {
+    margin-left: 12px;
+    margin-right: 12px;
+}
+
+.action:first-child {
+    margin-right: auto;
+    margin-left: 0;
+}
+
+.action:last-child {
+    margin-right: 0;
+}
+
+.action:hover {
+    cursor: pointer;
+    filter: invert(10%) sepia(99%) saturate(5669%) hue-rotate(332deg) brightness(79%) contrast(98%);
+}
+
+.details {
+    width: 100%;
+    height: 100%;
+}
+
+.details textarea {
+    padding: 0 15px;
+    border: none;
+    outline: none;
+}

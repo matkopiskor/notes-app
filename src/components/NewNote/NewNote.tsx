@@ -1,8 +1,12 @@
 import { FC } from 'react';
 import styles from './styles.module.css';
 
-export const NewNote: FC = () => {
+interface INewNoteProps {
+    onClick: () => void;
+};
+
+export const NewNote: FC<INewNoteProps> = ({ onClick }) => {
     return (
-        <div className={styles.newNote}>+</div>
+        <div className={styles.newNote} onClick={onClick}>+</div>
     );
 };
