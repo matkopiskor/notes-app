@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from 'react';
-import { INote } from '../models/Note';
+import { INote } from './Note';
 import { NotesContext } from './NotesContext';
 
 const NOTES_KEY = 'notes';

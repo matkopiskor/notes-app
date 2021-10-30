@@ -1,5 +1,4 @@
-export const defaultNoteContent = `
-This is a note
+export const defaultNoteContent = `This is a note
 ===========
 
 Subtitle

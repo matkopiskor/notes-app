@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import { INote } from '../models/Note';
+import { INote } from './Note';
 
 interface INotesContext {
     notes: INote[];
