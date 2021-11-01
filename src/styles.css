@@ -4,6 +4,10 @@
     --accent-color: #B90445;
     --primary-color: #000;
     --secondary-color: #fff;
+    --opacity-background: rgba(0, 0, 0, 0.2);
+    --filtered-color: invert(10%) sepia(99%) saturate(5669%) hue-rotate(332deg) brightness(79%) contrast(98%);
+    --note-background: #FDFDFD;
+    --note-box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.15);
 }
 
 *, *::before, *::after {
@@ -25,7 +29,10 @@ header {
 }
 
 footer {
-    position: absolute;
+    position: fixed;
+    background: var(--secondary-color);
+    width: 100%;
+    z-index: 2;
     bottom: 0;
     height: 5vh;
     display: flex;

@@ -1,94 +1,45 @@
-import { FC, useCallback, useState } from 'react';
+import { FC, useState, useEffect } from 'react';
 import styles from './styles.module.css';
-import Back from '../../assets/svg/back.svg';
-import Delete from '../../assets/svg/delete.svg';
-import Save from '../../assets/svg/save.svg';
-import Edit from '../../assets/svg/edit.svg';
-import ReactMarkdown from 'react-markdown';
-import { INote } from '../../utils/notesModule/model';
+import { useNotes, useNotesModal } from '../../utils/notesModule';
+import { NoteDetailsEditMode } from './components/NoteDetailsEditMode';
+import { NoteDetailsViewMode } from './components/NoteDetailsViewMode';
+import { NoteDetailsBackButton } from './components/NoteDetailsBackButton';
+import { NoteDetailsSaveButton } from './components/NoteDetailsSaveButton';
+import { NoteDetailsEditButton } from './components/NoteDetailsEditButton';
+import { NoteDetailsDeleteButton } from './components/NoteDetailsDeleteButton';
 
-interface INoteDetailsProps {
-    note: INote;
-    mode: 'view' | 'edit';
-    saveNote: (id: number, value: string) => void;
-    changeModeToEdit: () => void;
-    deleteNote: (id: number) => void;
-    closeModal: () => void;
-}
+export const NoteDetails: FC = () => {
+    const { notesDetailsId } = useNotesModal();
+    const noteId = notesDetailsId as number;
+    const [value, setValue] = useState<string>('');
+    const { get } = useNotes();
+    const { modalMode } = useNotesModal();
 
-export const NoteDetails: FC<INoteDetailsProps> = (props) => {
-    const {
-        mode,
-        closeModal,
-        note: { id, source },
-        saveNote,
-        changeModeToEdit,
-        deleteNote,
-    } = props;
-    const [value, setValue] = useState(source);
-
-    const onSaveClick = useCallback(() => {
-        saveNote(id, value);
-    }, [id, saveNote, value]);
-    const onDeleteClick = useCallback(() => deleteNote(id), [deleteNote, id]);
+    useEffect(() => {
+        const note = get(noteId);
+        setValue(note.source);
+    }, [get, noteId]);
 
     return (
-        <div className={styles.noteDetailsWrapper} onClick={closeModal}>
-            <div className={styles.noteDetails} onClick={(e) => e.stopPropagation()}>
+        <div className={styles.noteDetailsWrapper}>
+            <div className={styles.noteDetails}>
                 <div className={styles.actionsRow}>
-                    <img src={Back} alt="Back action" className={styles.action} title="Back" onClick={closeModal} />
-                    {mode === 'edit' ? (
-                        <img
-                            src={Save}
-                            alt="Save action"
-                            className={styles.action}
-                            title="Save"
-                            onClick={onSaveClick}
-                        />
+                    <NoteDetailsBackButton />
+                    {modalMode === 'edit' ? (
+                        <NoteDetailsSaveButton value={value}  />
                     ) : (
-                        <img
-                            src={Edit}
-                            alt="Edit action"
-                            className={styles.action}
-                            title="Edit"
-                            onClick={changeModeToEdit}
-                        />
+                        <NoteDetailsEditButton />
                     )}
-                    <img
-                        src={Delete}
-                        alt="Delete action"
-                        className={styles.action}
-                        title="Delete"
-                        onClick={onDeleteClick}
-                    />
+                    <NoteDetailsDeleteButton />
                 </div>
                 <div className={styles.details}>
-                    {mode === 'edit' ? <EditMode value={value} setValue={setValue} /> : <ViewMode value={value} />}
+                    {modalMode === 'edit' ? (
+                        <NoteDetailsEditMode value={value} setValue={setValue} />
+                    ) : (
+                        <NoteDetailsViewMode value={value} />
+                    )}
                 </div>
             </div>
         </div>
     );
-};
-
-interface IEditModeProps {
-    value: string;
-    setValue: (val: string) => void;
-}
-
-const EditMode: FC<IEditModeProps> = ({ value, setValue }) => {
-    const onChange = useCallback(
-        (e) => {
-            setValue(e.target.value);
-        },
-        [setValue]
-    );
-    return <textarea value={value} onChange={onChange} style={{ width: '100%', height: '100%' }}></textarea>;
-};
-
-interface IViewModeProps {
-    value: string;
-}
-
-const ViewMode: FC<IViewModeProps> = ({ value }) => {
-    return <ReactMarkdown>{value}</ReactMarkdown>;
 };

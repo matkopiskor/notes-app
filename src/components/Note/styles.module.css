@@ -1,8 +1,8 @@
 .note {
     width: 200px;
     height: 200px;
-    background: #FDFDFD;
-    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.15);
+    background: var(--note-background);
+    box-shadow: var(--note-box-shadow);
     border-radius: 10px;
     cursor: pointer;
     overflow: hidden;
@@ -10,7 +10,7 @@
 }
 
 .note:hover {
-    border: 3px solid #B90445;
+    border: 3px solid var(--accent-color);
 }
 
 .noteContent {
