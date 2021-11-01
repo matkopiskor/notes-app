@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/notes-app/static/css/main.c1822406.chunk.css",
+    "main.js": "/notes-app/static/js/main.303f23bb.chunk.js",
+    "main.js.map": "/notes-app/static/js/main.303f23bb.chunk.js.map",
+    "runtime-main.js": "/notes-app/static/js/runtime-main.1adbff72.js",
+    "runtime-main.js.map": "/notes-app/static/js/runtime-main.1adbff72.js.map",
+    "static/js/2.c94e81ea.chunk.js": "/notes-app/static/js/2.c94e81ea.chunk.js",
+    "static/js/2.c94e81ea.chunk.js.map": "/notes-app/static/js/2.c94e81ea.chunk.js.map",
+    "index.html": "/notes-app/index.html",
+    "static/css/main.c1822406.chunk.css.map": "/notes-app/static/css/main.c1822406.chunk.css.map",
+    "static/js/2.c94e81ea.chunk.js.LICENSE.txt": "/notes-app/static/js/2.c94e81ea.chunk.js.LICENSE.txt",
+    "static/media/back.6b1d965b.svg": "/notes-app/static/media/back.6b1d965b.svg",
+    "static/media/delete.832245fc.svg": "/notes-app/static/media/delete.832245fc.svg",
+    "static/media/edit.f95b2ea7.svg": "/notes-app/static/media/edit.f95b2ea7.svg",
+    "static/media/save.563e3c29.svg": "/notes-app/static/media/save.563e3c29.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.1adbff72.js",
+    "static/js/2.c94e81ea.chunk.js",
+    "static/css/main.c1822406.chunk.css",
+    "static/js/main.303f23bb.chunk.js"
+  ]
+}
